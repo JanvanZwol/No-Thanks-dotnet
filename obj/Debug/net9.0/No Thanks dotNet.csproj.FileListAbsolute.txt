@@ -1,0 +1,14 @@
+C:\Users\janvz\programming\No Thanks dotNet\bin\Debug\net9.0\No Thanks dotNet.exe
+C:\Users\janvz\programming\No Thanks dotNet\bin\Debug\net9.0\No Thanks dotNet.deps.json
+C:\Users\janvz\programming\No Thanks dotNet\bin\Debug\net9.0\No Thanks dotNet.runtimeconfig.json
+C:\Users\janvz\programming\No Thanks dotNet\bin\Debug\net9.0\No Thanks dotNet.dll
+C:\Users\janvz\programming\No Thanks dotNet\bin\Debug\net9.0\No Thanks dotNet.pdb
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.AssemblyInfoInputs.cache
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.AssemblyInfo.cs
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.csproj.CoreCompileInputs.cache
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.dll
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\refint\No Thanks dotNet.dll
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.pdb
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.genruntimeconfig.cache
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\ref\No Thanks dotNet.dll
