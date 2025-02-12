@@ -14,41 +14,32 @@ void time10000()
     Strategy[] strategies = new Strategy[4];
     for (int i = 0; i < 4; i++)
     {
-        strategies[i] = new NaiveStrategy();
+        strategies[i] = new NNStrategy();
     }
 
     watch.Start();
     for (int i = 0; i < n; i++) {
         Game game = new Game(strategies);
-        game.play(false, true);
+        game.play(false, false);
     }
     watch.Stop();
     Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
 }
 
-void printGame()
+void oneGame()
 {
     Strategy[] strategies = new Strategy[4];
     for (int i = 0; i < 4; i++)
     {
-        strategies[i] = new NaiveStrategy();
+        strategies[i] = new NNStrategy();
     }
     Game game = new Game(strategies);
     int[] scores = game.play(false, true);
     Console.WriteLine(String.Join(", ",  scores));
-    game.GetHistory().printGame();
 }
 
-Matrix<double> A = DenseMatrix.OfArray(new double[,] {
-        {1,1,1,1},
-        {1,2,3,4},
-        {4,3,2,1}});
-
-Matrix<double> B = DenseMatrix.OfArray(new double[,] {
-        {1,1,1,1},
-        {1,2,3,4},
-        {4,3,2,1},
-        {3,2,4,1}});
-
-
-Console.WriteLine(A * B);
+var watch = new System.Diagnostics.Stopwatch();
+watch.Start();
+TrainingPrograms.SGTEvolution(10000, 0.5, 0.1);
+watch.Stop();
+Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
