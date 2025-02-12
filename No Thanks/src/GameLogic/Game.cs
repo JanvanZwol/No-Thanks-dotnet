@@ -7,11 +7,14 @@ public class Game
     private Player[] players;
     private int numPlayers;
     private Deck deck;
+    private History history;
     
     public Game(Strategy[] strategies)
     {
         // Create Deck
         deck = new Deck();
+        // Create history object
+        history = new History();
         
 
         // Create players
@@ -21,10 +24,9 @@ public class Game
         {
             players[i] = new Player(strategies[i], numPlayers);
         }
-
     }
 
-    public int[] play(bool verbose) {
+    public int[] play(bool verbose, bool recordHistory) {
         // Turn counter
         int turn = 0;
 
@@ -35,12 +37,12 @@ public class Game
             int revealedCard = deck.drawCard();
             int pot = 0;
             bool cardNotTaken = true;
-            Gamestate gamestate = new Gamestate(revealedCard, pot, players, turn);
 
             // Draw a new card when the current card has been taken
             while (cardNotTaken)
             {
                 Player activePlayer = players[turn];
+                Gamestate gamestate = new Gamestate(revealedCard, pot, players, turn);
 
                 // Let the player decide
                 bool take;
@@ -52,6 +54,9 @@ public class Game
                 {
                     take = true;
                 }
+
+                // Record move
+                if (recordHistory) {history.recordAction(turn, activePlayer.getChips(), revealedCard, pot, take);}
 
                 // Handle decision
                 if (take)
@@ -77,5 +82,9 @@ public class Game
         }
 
         return scores;
+    }
+
+    public History GetHistory() {
+        return history;
     }
 }

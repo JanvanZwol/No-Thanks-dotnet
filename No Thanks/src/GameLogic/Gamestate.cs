@@ -28,12 +28,6 @@ public class Gamestate
         }
     }
 
-    public void paid(int playerIndex)
-    {
-        playerChips[playerIndex]--;
-        pot++;
-    }
-
     public int getRevealedCard()
     {
         return revealedCard;

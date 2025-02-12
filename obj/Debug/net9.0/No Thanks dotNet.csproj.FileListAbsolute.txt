@@ -12,3 +12,7 @@ C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\refint\No Thanks do
 C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.pdb
 C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.genruntimeconfig.cache
 C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\ref\No Thanks dotNet.dll
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.sourcelink.json
+C:\Users\janvz\programming\No Thanks dotNet\bin\Debug\net9.0\MathNet.Numerics.dll
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.csproj.AssemblyReference.cache
+C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thank.EA6DCB4C.Up2Date
