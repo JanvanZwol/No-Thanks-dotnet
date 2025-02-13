@@ -56,7 +56,7 @@ public class Game
                 }
 
                 // Record move
-                if (recordHistory) {history.recordAction(turn, activePlayer.getChips(), revealedCard, pot, take);}
+                if (recordHistory) {history.recordAction(gamestate, take);}
 
                 // Handle decision
                 if (take)
@@ -84,7 +84,7 @@ public class Game
         return scores;
     }
 
-    public History GetHistory() {
+    public History getHistory() {
         return history;
     }
 }

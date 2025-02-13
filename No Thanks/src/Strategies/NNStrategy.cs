@@ -32,7 +32,6 @@ public class NNStrategy : Strategy
         NNhelpers.readNN(path);
     }
 
-
     public NNStrategy()
     {
         this.weights = new Matrix<double>[2];
@@ -45,6 +44,38 @@ public class NNStrategy : Strategy
         //generate second layer
         weights[1] = Matrix<double>.Build.Random(1, 50);
         biases[1] = Vector.Build.Random(1);
+    }
+
+    public NNStrategy(int[] layers)
+    {
+        this.weights = new Matrix<double>[layers.Length + 1];
+        this.biases = new Vector<double>[layers.Length + 1];
+
+        // generate layers
+        if (layers.Length > 0)
+        {
+            for (int i = 0; i < layers.Length; i++)  
+            {
+                if (i == 0)
+                {
+                    weights[i] = Matrix<double>.Build.Random(layers[i],170);
+                    biases[i] = Vector.Build.Random(layers[i]);
+                }
+                else
+                {
+                    weights[i] = Matrix<double>.Build.Random(layers[i],layers[i-1]);
+                    biases[i] = Vector.Build.Random(layers[i]);
+                }
+            }
+
+            weights[weights.Length - 1] = Matrix<double>.Build.Random(1,layers[layers.Length - 1]);
+            biases[biases.Length - 1] = Vector.Build.Random(1);
+        }
+        else
+        {
+            weights[weights.Length - 1] = Matrix<double>.Build.Random(1,170);
+            biases[biases.Length - 1] = Vector.Build.Random(1);
+        }
     }
 
     public override bool decide(Gamestate gamestate)
@@ -65,9 +96,6 @@ public class NNStrategy : Strategy
 
     public (Matrix<double>, Vector<double>)[] reproduce(double magnitude, double probability)
     {
-        // Matrix<double>[] childWeights = new Matrix[weights.Length];
-        // Vector<double>[] childBiases = new Vector[biases.Length];
-
         (Matrix<double>, Vector<double>)[] wbList = new (Matrix<double>, Vector<double>)[weights.Length];
 
         Random rng = new Random();
@@ -121,7 +149,7 @@ public class NNStrategy : Strategy
         return biases;
     }
 
-    public (Matrix<double>, Vector<double>)[] getwbList()
+    public (Matrix<double>, Vector<double>)[] getTuples()
     {
         (Matrix<double>, Vector<double>)[] wbList = new (Matrix<double>, Vector<double>)[weights.Length];
 

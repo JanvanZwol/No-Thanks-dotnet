@@ -38,22 +38,19 @@ void oneGame()
     Console.WriteLine(String.Join(", ",  scores));
 }
 
-// var watch = new System.Diagnostics.Stopwatch();
-// watch.Start();
-// (Matrix<double>[], Vector<double>[]) childwb = TrainingPrograms.SGTEvolution(100000, 0.5, 0.1);
-// watch.Stop();
+
+TrainMimic mt = new TrainMimic();
+NNStrategy nn = mt.trainMimic(new Strategy_1());
+NNhelpers.writeNN(NNhelpers.NNPATH + "/test.nn", nn);
+
 
 // Strategy[] strategies = new Strategy[4];
-// strategies[0] = new Strategy_1();
-// for (int i = 1; i < 4; i++)
+// for (int i = 0; i < 4; i++)
 // {
-//     strategies[i] = new NNStrategy(childwb.Item1, childwb.Item2);
+//     strategies[i] = new Strategy_1();
 // }
-
 // Game game = new Game(strategies);
-// int[] scores = game.play(false, false);
-// Console.WriteLine(String.Join(", ",  scores));
+// game.play(false, true);
+// History hist = game.getHistory();
 
-// Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
-
-NNStrategy nn = new NNStrategy(NNhelpers.NNPATH + "test.nn");
+// Console.WriteLine("" + hist.getVoluntaryTakeRate());

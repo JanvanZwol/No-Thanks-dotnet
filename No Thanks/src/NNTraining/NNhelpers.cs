@@ -110,4 +110,85 @@ public class NNhelpers
         
         return wbList;
     }
+
+    public static double computeLoss((Matrix<double>, Vector<double>)[] nn, Vector<double> layerVector, double answer)
+    {
+        for (int i = 0; i < nn.Length; i++)
+        {
+            layerVector = nn[i].Item1 * layerVector;
+            layerVector = layerVector + nn[i].Item2;
+            layerVector = NNhelpers.sigmoidActivateVector(layerVector);
+        }
+
+        double outputNode = layerVector.At(0);
+
+        return Math.Pow(answer - outputNode, 2) / 2;
+    }
+
+    public static (Matrix<double>, Vector<double>)[] backPropegate((Matrix<double>, Vector<double>)[] nn, Gamestate gamestate, int answer, double learningRate)
+    {
+        // Get activations
+        Vector<double>[] layerActivations = new Vector<double>[nn.Length + 1];
+
+        layerActivations[0] = getInputVector4(gamestate);
+
+        for (int i = 1; i < nn.Length + 1; i++)
+        {
+            Vector<double> previousLayer;
+            // get the previous layer
+            if (i == 0) {previousLayer = NNhelpers.getInputVector4(gamestate);}
+            else {previousLayer = layerActivations[i-1];}
+
+            // calculate activations
+            Vector<double> layer = nn[i-1].Item1 * previousLayer;
+            layer = layer + nn[i-1].Item2;
+            layer = NNhelpers.sigmoidActivateVector(layer);
+
+            // Add it to the array
+            layerActivations[i] = layer;
+        }
+
+        // calculate output errors
+        Vector<double>[] errors = new Vector<double>[nn.Length + 1];
+        for (int i = nn.Length; i > 0; i--)
+        {
+            errors[i] = Vector<double>.Build.Dense(layerActivations[i].Count);
+
+            if (i == nn.Length)
+            {
+                // The error values of the last layer is:
+                // (Gradient) Costfunction (pointwise multiplication) (derivative) (activationfunction) activation value
+                Vector<double> gradientCost =  Vector<double>.Build.Dense(1, answer) - layerActivations[i];
+                Func<double, double> sigmoidPrime = x => x * (1 - x);
+                Vector<double> sigmoidDerivative = layerActivations[i].Map(sigmoidPrime);
+
+                errors[i] = gradientCost.PointwiseMultiply(sigmoidDerivative);
+            }
+            else
+            {
+                // The error for an intermediate layer is (l)
+                // (transpose) weights from l to l+1 * error vector of l+1 (pointwise multiplication) (derivative) (activationfunction) activation value
+                Matrix<double> transposedWeights = nn[i].Item1.Transpose();
+                Func<double, double> sigmoidPrime = x => x * (1 - x);
+                Vector<double> sigmoidDerivative = layerActivations[i].Map(sigmoidPrime);
+
+                errors[i] = (transposedWeights * errors[i + 1]).PointwiseMultiply(sigmoidDerivative);
+            }
+        }
+
+        // Adjust weights and biases
+        (Matrix<double>, Vector<double>)[] nnPrime =  new (Matrix<double>, Vector<double>)[nn.Length];
+        for (int i = 0; i < nn.Length; i++)
+        {
+            // Weights
+            Matrix<double> weightPrime = nn[i].Item1 + (layerActivations[i+1] * errors[i+1] * learningRate);
+
+            // Bias
+            Vector<double> biasPrime = nn[i].Item2 + (errors[i+1] * learningRate);
+
+            nnPrime[i] = (weightPrime, biasPrime);
+        }
+
+        return nnPrime;
+    }
 }

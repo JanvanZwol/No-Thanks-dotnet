@@ -33,7 +33,7 @@ public class History
 
     public double getVoluntaryTakeRate()
     {
-        int voluntaryTakes = 0;
+        double voluntaryTakes = 0;
 
         foreach ((Gamestate, bool) turn in history)
         {  

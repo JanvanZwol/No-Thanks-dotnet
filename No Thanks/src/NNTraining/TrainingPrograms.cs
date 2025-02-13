@@ -33,7 +33,7 @@ public class TrainingPrograms
                 voluntaryTakesRate = 0;
             }
 
-            voluntaryTakesRate += game.GetHistory().getVoluntaryTakeRate();
+            voluntaryTakesRate += game.getHistory().getVoluntaryTakeRate();
 
             // reproduce first place
             winnerIndex = Array.IndexOf(scores, scores.Min());

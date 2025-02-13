@@ -17,6 +17,6 @@ public class NaiveStrategy : Strategy {
 
     public override bool decide(Gamestate gamestate)
     {
-        return random.NextDouble() < threshold;
+        return random.NextDouble() > threshold;
     }
 }
