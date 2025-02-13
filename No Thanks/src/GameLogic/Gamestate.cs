@@ -7,10 +7,12 @@ public class Gamestate
     private int pot;
     private int[] playerChips;
     private ulong[] playerCards;
+    private int turn;
 
     public Gamestate(int revealedCard, int pot, Player[] players, int turn)
     {
         int numPlayers = players.Length;
+        this.turn = turn;
 
         // Assign values for revealed card and pot
         this.revealedCard = revealedCard;
@@ -46,6 +48,11 @@ public class Gamestate
     public ulong[] getPlayerCards()
     {
         return playerCards;
+    }
+
+    public int getTurn()
+    {
+        return turn;
     }
 
     public ulong allCardsPlayed()
