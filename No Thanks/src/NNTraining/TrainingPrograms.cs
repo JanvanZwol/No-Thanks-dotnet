@@ -19,19 +19,29 @@ public class TrainingPrograms
         int winnerIndex;
         NNStrategy winner;
 
-        for (int i = 0; i < games - 1; i++)
+        double voluntaryTakesRate = 0;
+
+        for (int i = 0; i < games + 1; i++)
         {
             // Let them play a game
             game = new Game(strategies);
-            scores = game.play(false, false);
+            scores = game.play(false, true);
+
+            if ((i + 1) % 1000 == 0)
+            {
+                Console.WriteLine(voluntaryTakesRate / 100);
+                voluntaryTakesRate = 0;
+            }
+
+            voluntaryTakesRate += game.GetHistory().getVoluntaryTakeRate();
 
             // reproduce first place
             winnerIndex = Array.IndexOf(scores, scores.Min());
             winner = (NNStrategy) strategies[winnerIndex];
             for (int j = 0; j < 4; j++)
             {
-                (Matrix<double>[], Vector<double>[]) childwb = winner.reproduce(magnitude, probability);
-                strategies[j] = new NNStrategy(childwb.Item1, childwb.Item2);
+                (Matrix<double>, Vector<double>)[] childwb = winner.reproduce(magnitude, probability);
+                strategies[j] = new NNStrategy(childwb);
             }
         }
 

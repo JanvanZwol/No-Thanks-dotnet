@@ -1,3 +1,4 @@
+using System.Dynamic;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 
@@ -8,10 +9,29 @@ public class NNStrategy : Strategy
     private Matrix<Double>[] weights;
     private Vector<double>[] biases;
 
-    public NNStrategy(Matrix<double>[] weights, Vector<double>[] biases) {
+    public NNStrategy(Matrix<double>[] weights, Vector<double>[] biases)
+    {
         this.weights = weights;
         this.biases = biases;
     }
+
+    public NNStrategy((Matrix<double>, Vector<double>)[] wbList)
+    {
+        weights = new Matrix<Double>[wbList.Length];
+        biases = new Vector<double>[wbList.Length];
+
+        for (int i=0; i < wbList.Length; i++)
+        {
+            weights[i] = wbList[i].Item1;
+            biases[i] = wbList[i].Item2;
+        }
+    }
+
+    public NNStrategy(String path)
+    {
+        NNhelpers.readNN(path);
+    }
+
 
     public NNStrategy()
     {
@@ -43,16 +63,19 @@ public class NNStrategy : Strategy
         return outputNode > 0.5;
     }
 
-    public (Matrix<double>[], Vector<double>[]) reproduce(double magnitude, double probability)
+    public (Matrix<double>, Vector<double>)[] reproduce(double magnitude, double probability)
     {
-        Matrix<double>[] childWeights = new Matrix[weights.Length];
-        Vector<double>[] childBiases = new Vector[biases.Length];
+        // Matrix<double>[] childWeights = new Matrix[weights.Length];
+        // Vector<double>[] childBiases = new Vector[biases.Length];
+
+        (Matrix<double>, Vector<double>)[] wbList = new (Matrix<double>, Vector<double>)[weights.Length];
 
         Random rng = new Random();
 
         // Mutate weights
-        for (int i = 0; i < weights.Length; i++)
+        for (int i = 0; i < wbList.Length; i++)
         {
+            //First do the MATRIX
             // Create a mutation matrix and a magnitude matrix
             Matrix<double> mutationMatrix = Matrix<double>.Build.Random(weights[i].RowCount, weights[i].ColumnCount);
             Matrix<double> magnitudeMatrix = Matrix<double>.Build.Dense(weights[i].RowCount, weights[i].ColumnCount, magnitude);
@@ -65,28 +88,28 @@ public class NNStrategy : Strategy
             mutationMatrix =  mutationMatrix.PointwiseMultiply(magnitudeMatrix);
 
             // Add it to the existing matrix
-            childWeights[i] = weights[i].Add(mutationMatrix);
-        }
+            Matrix<double> mutatedMatrix = weights[i].Add(mutationMatrix);
 
-        // mutate biases
-        for (int i = 0; i < biases.Length; i++)
-        {
+            // Then do the VECTOR
             // Create a mutation vector and a magnitude vector
             Vector<double> mutationVector = Vector<double>.Build.Random(biases[i].Count);
             Vector<double> magnitudeVector = Vector<double>.Build.Dense(biases[i].Count, magnitude);
 
             // Make sure only some values are mutated
-            Func<double, double> randomMutation = x=> rng.NextDouble() < probability ? x : 0;
+            // randomMutation already defined
             magnitudeVector.Map(randomMutation);
 
             // Pointwise multiply the matrices to get the real mutation matrix
             mutationVector =  mutationVector.PointwiseMultiply(magnitudeVector);
 
             // Add it to the existing matrix
-            childBiases[i] = biases[i].Add(mutationVector);
+            Vector<double> mutatedVector = biases[i].Add(mutationVector);
+
+            // Add the weights and biases to the tuple list    
+            wbList[i] = (mutatedMatrix, mutatedVector);
         }
 
-        return (childWeights, childBiases);
+        return wbList;
 
     }
 
@@ -96,5 +119,17 @@ public class NNStrategy : Strategy
 
     public Vector<double>[] getBiases() {
         return biases;
-    } 
+    }
+
+    public (Matrix<double>, Vector<double>)[] getwbList()
+    {
+        (Matrix<double>, Vector<double>)[] wbList = new (Matrix<double>, Vector<double>)[weights.Length];
+
+        for (int i = 0; i < weights.Length; i++)
+        {
+            wbList[i] = (weights[i], biases[i]);
+        }
+
+        return wbList;
+    }
 }

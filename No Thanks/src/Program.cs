@@ -38,8 +38,22 @@ void oneGame()
     Console.WriteLine(String.Join(", ",  scores));
 }
 
-var watch = new System.Diagnostics.Stopwatch();
-watch.Start();
-TrainingPrograms.SGTEvolution(10000, 0.5, 0.1);
-watch.Stop();
-Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
+// var watch = new System.Diagnostics.Stopwatch();
+// watch.Start();
+// (Matrix<double>[], Vector<double>[]) childwb = TrainingPrograms.SGTEvolution(100000, 0.5, 0.1);
+// watch.Stop();
+
+// Strategy[] strategies = new Strategy[4];
+// strategies[0] = new Strategy_1();
+// for (int i = 1; i < 4; i++)
+// {
+//     strategies[i] = new NNStrategy(childwb.Item1, childwb.Item2);
+// }
+
+// Game game = new Game(strategies);
+// int[] scores = game.play(false, false);
+// Console.WriteLine(String.Join(", ",  scores));
+
+// Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
+
+NNStrategy nn = new NNStrategy(NNhelpers.NNPATH + "test.nn");

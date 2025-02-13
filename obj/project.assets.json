@@ -14,6 +14,35 @@
             "related": ".xml"
           }
         }
+      },
+      "MathNet.Numerics.Data.Text/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "MathNet.Numerics": "5.0.0"
+        },
+        "compile": {
+          "lib/net6.0/MathNet.Numerics.Data.Text.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/MathNet.Numerics.Data.Text.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
       }
     }
   },
@@ -39,11 +68,65 @@
         "mathnet.numerics.5.0.0.nupkg.sha512",
         "mathnet.numerics.nuspec"
       ]
+    },
+    "MathNet.Numerics.Data.Text/5.0.0": {
+      "sha512": "RDSDTawK3xZVuULiqpCY6LFv0LHNiKmASzOwIBc5J1KeArSFRhTnt8Fz4meL6q+hjQUcQRgVAJpFrt6Fj0kSDQ==",
+      "type": "package",
+      "path": "mathnet.numerics.data.text/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net461/MathNet.Numerics.Data.Text.dll",
+        "lib/net461/MathNet.Numerics.Data.Text.xml",
+        "lib/net48/MathNet.Numerics.Data.Text.dll",
+        "lib/net48/MathNet.Numerics.Data.Text.xml",
+        "lib/net5.0/MathNet.Numerics.Data.Text.dll",
+        "lib/net5.0/MathNet.Numerics.Data.Text.xml",
+        "lib/net6.0/MathNet.Numerics.Data.Text.dll",
+        "lib/net6.0/MathNet.Numerics.Data.Text.xml",
+        "lib/netstandard2.0/MathNet.Numerics.Data.Text.dll",
+        "lib/netstandard2.0/MathNet.Numerics.Data.Text.xml",
+        "mathnet.numerics.data.text.5.0.0.nupkg.sha512",
+        "mathnet.numerics.data.text.nuspec"
+      ]
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "MathNet.Numerics >= 5.0.0"
+      "MathNet.Numerics >= 5.0.0",
+      "MathNet.Numerics.Data.Text >= 5.0.0",
+      "Newtonsoft.Json >= 13.0.3"
     ]
   },
   "packageFolders": {
@@ -92,6 +175,14 @@
           "MathNet.Numerics": {
             "target": "Package",
             "version": "[5.0.0, )"
+          },
+          "MathNet.Numerics.Data.Text": {
+            "target": "Package",
+            "version": "[5.0.0, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
           }
         },
         "imports": [

@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "tPSfiXdhyto=",
+  "dgSpecHash": "b6fzM4oiO3M=",
   "success": true,
   "projectFilePath": "C:\\Users\\janvz\\programming\\No Thanks dotNet\\No Thanks dotNet.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\janvz\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512"
+    "C:\\Users\\janvz\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512",
+    "C:\\Users\\janvz\\.nuget\\packages\\mathnet.numerics.data.text\\5.0.0\\mathnet.numerics.data.text.5.0.0.nupkg.sha512",
+    "C:\\Users\\janvz\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

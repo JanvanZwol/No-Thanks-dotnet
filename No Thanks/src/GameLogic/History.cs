@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Text;
+using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.Statistics;
 
 namespace NoThanks;
 
@@ -64,5 +67,23 @@ public class History
             Dictionary<String, int> decTurn = decypherTurn(turn);
             Console.WriteLine($"Player Turn: {decTurn["playerIndex"]}  Revealed card: {decTurn["revealedCard" ], 2} | Pot: {decTurn["pot"], 2} | action: {decTurn["action"]}");
         }
+    }
+
+    public double getVoluntaryTakeRate()
+    {
+        int voluntaryTakes = 0;
+        Dictionary<String, int> decTurn;
+
+        foreach (uint turn in history)
+        {
+            decTurn = decypherTurn(turn);
+            
+            if (decTurn["playerChips"] > 0 && decTurn["action"] == 1)
+            {
+                voluntaryTakes++;
+            }
+        }
+
+        return voluntaryTakes / history.Count;
     }
 }

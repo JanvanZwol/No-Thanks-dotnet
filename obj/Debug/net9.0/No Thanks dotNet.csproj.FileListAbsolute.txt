@@ -16,3 +16,5 @@ C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.so
 C:\Users\janvz\programming\No Thanks dotNet\bin\Debug\net9.0\MathNet.Numerics.dll
 C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thanks dotNet.csproj.AssemblyReference.cache
 C:\Users\janvz\programming\No Thanks dotNet\obj\Debug\net9.0\No Thank.EA6DCB4C.Up2Date
+C:\Users\janvz\programming\No Thanks dotNet\bin\Debug\net9.0\MathNet.Numerics.Data.Text.dll
+C:\Users\janvz\programming\No Thanks dotNet\bin\Debug\net9.0\Newtonsoft.Json.dll
